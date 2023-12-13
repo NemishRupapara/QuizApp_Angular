@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "primeicons/primeicons.css";
+
+
+.form{
+    margin: 100px;
+}
+.card{
+    border:none;
+    margin-left: 300px;
+    
+    
+}
+
+select{
+    width: 200px !important;
+    
+}
+.card1{
+    padding-left: 300px !important;
+}
+
+.div1{
+    padding-left: 253px ;
+}
+.text1{
+    padding-left: 140px;
+}
+.maincard{
+    transition: 0.8s!important;
+}
+/* .icon1{
+    opacity: 0.04  ;
+}
+.card:hover .icon1{
+    opacity: 1;
+    transition: 0.8s;
+} */
+.link{
+    text-decoration: none;
+    color: rgb(22, 129, 211);
+    font-weight: bold;
+}

@@ -1,0 +1,370 @@
+<!-- <div class="mt-5 ms-5">
+  <p-button
+    icon="pi pi-plus"
+    (click)="addQuestion()"
+    class="icon1"
+    pTooltip="Add new Question"
+
+  ></p-button>
+  
+  <div *ngFor="let question of questions; let i = index" class="m-2">
+    <div class="flex justify-content-center">
+      <div class="card">
+        <p-card [style]="{ width: '890px' }" >
+          <p-button
+            icon="pi pi-times"
+            (click)="removeQuestion(i)"
+            *ngIf="questions.length > 0"
+            class="m-2 icon1"
+            styleClass="p-button-danger"
+            pTooltip="Delete This Question"
+          ></p-button>
+          <p-button
+            icon="pi pi-check"
+            (click)="saveQuestion()"
+            *ngIf="questions.length > 0"
+            class="m-2 icon1"
+            styleClass="p-button-success"
+            pTooltip="Save this Question"
+          ></p-button>
+
+          <div class="card1">
+            <div class="m-2">
+              <label for="question">Question:</label>
+              <input
+                pTooltip="Write you question here"
+                type="text"
+                pInputText
+                id="question"
+                [(ngModel)]="question.text"
+                class="ms-5"
+                (ngModelChange)="onquestionChange(i)"
+              />
+            </div>
+            <div style="display: inline-block" class="m-2">
+              <label for="questionType" style="display: inline-block"
+                >Question Type:</label
+              >
+
+              <select
+                pTooltip="Select question Type"
+                class="form-select ms-2"
+                id="question-type"
+                [(ngModel)]="question.type"
+                name="type"
+                required
+                style="display: inline-block"
+              >
+                <option value="multipleChoice">Multiple Choice</option>
+                <option value="checkbox">Checkbox</option>
+                <option value="shortAnswer">Short Answer</option>
+              </select>
+            </div>
+
+            <div *ngIf="question.type === 'multipleChoice'" class="m-2">
+              <div
+                *ngFor="let option of question.options; let j = index"
+                class="m-2"
+              >
+                <p-radioButton
+                  [name]="'question_' + i"
+                  [value]="option.text"
+                  [(ngModel)]="question.selectedOption"
+                  class="mb-2"
+                  (ngModelChange)="onRadioButtonChange(i)"
+                ></p-radioButton>
+                <input
+                  pTooltip="Radiobutton label"
+                  type="text"
+                  pInputText
+                  [(ngModel)]="option.text"
+                  class="ms-3"
+                />
+                <p-button
+                  icon="pi pi-times"
+                  (click)="removeOption(i, j)"
+                  class="m-2"
+                  styleClass="p-button-danger"
+                  pTooltip="Remove this option"
+                ></p-button>
+              </div>
+
+              <div class="div1">
+                <p-button
+                  type="button"
+                  icon="pi pi-plus"
+                  (click)="addOption(i)"
+                  class="m-2"
+                  styleClass="p-button-secondary"
+                  pTooltip="Add new option"
+                ></p-button>
+              </div>
+            </div>
+
+            <div *ngIf="question.type === 'checkbox'" class="m-2">
+              <div
+                *ngFor="let option of question.options; let j = index"
+                class="m-2"
+              >
+                <p-checkbox
+                  name="option"
+                  [value]="option.text"
+                  [(ngModel)]="option.selected"
+                  [inputId]="option.text + 1"
+                  class="mb-2"
+                  (ngModelChange)="onCheckboxChange(option)"
+                ></p-checkbox>
+                <input
+                  pTooltip="Checkbox label"
+                  type="text"
+                  pInputText
+                  [(ngModel)]="option.text"
+                  class="ms-3"
+                />
+                <p-button
+                  icon="pi pi-times"
+                  (click)="removeOption(i, j)"
+                  class="m-2"
+                  styleClass="p-button-danger"
+                  pTooltip="Remove this option"
+                ></p-button>
+              </div>
+
+              <div class="div1">
+                <p-button
+                  type="button"
+                  icon="pi pi-plus"
+                  class="m-2"
+                  (click)="addOption(i)"
+                  styleClass="p-button-secondary"
+                  pTooltip="Add new option"
+                ></p-button>
+              </div>
+            </div>
+
+            <div *ngIf="question.type === 'shortAnswer'" class="m-2 text1">
+              <textarea
+                pTooltip="Short answer text"
+                pInputTextarea
+                [autoResize]="true"
+                [(ngModel)]="question.shortAnswerResponse"
+                (ngModelChange)="onShortAnswerChange(i)"
+              ></textarea>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+<app-preview [questions]="questions" ></app-preview>
+<router-outlet ></router-outlet>
+
+
+
+
+
+
+
+
+
+<!-- <div *ngIf="question.type === 'multipleChoice'" class="m-2">
+  <div *ngFor="let option of question.options; let j = index" class="m-2">
+    <p-radioButton [value]="option.text" [disabled]="true"></p-radioButton>
+    {{ option.text }}
+  </div>
+</div>
+
+<!-- Display options for multiple choice questions -->
+<!-- <div *ngIf="question.type === 'checkbox'" class="m-2">
+  <div *ngFor="let option of question.options; let j = index" class="m-2">
+    <p-checkbox [value]="option.text" [disabled]="true"></p-checkbox>
+    {{ option.text }}
+  </div>
+</div> --> 
+ <div class="mt-5 ms-5">
+  <p-button
+    icon="pi pi-plus"
+    (click)="addQuestion()"
+    class="icon1"
+    pTooltip="Add new Question"
+
+  ></p-button>
+  
+  <div *ngFor="let question of questions; let i = index" class="m-2">
+    <div class="flex justify-content-center">
+      <div class="card">
+        <p-card [style]="{ width: '890px' }" >
+          <p-button
+            icon="pi pi-times"
+            (click)="removeQuestion(i)"
+            *ngIf="questions.length > 0"
+            class="m-2 icon1"
+            styleClass="p-button-danger"
+            pTooltip="Delete This Question"
+          ></p-button>
+          <p-button
+            icon="pi pi-check"
+            (click)="saveQuestion()"
+            *ngIf="questions.length > 0"
+            class="m-2 icon1"
+            styleClass="p-button-success"
+            pTooltip="Save this Question"
+          ></p-button>
+
+          <div class="card1">
+            <div class="m-2">
+              <label for="question">Question:</label>
+              <input
+                pTooltip="Write you question here"
+                type="text"
+                pInputText
+                id="question"
+                [(ngModel)]="question.text"
+                class="ms-5"
+                (ngModelChange)="onquestionChange(i)"
+              />
+            </div>
+            <div style="display: inline-block" class="m-2">
+              <label for="questionType" style="display: inline-block"
+                >Question Type:</label
+              >
+
+              <select
+                pTooltip="Select question Type"
+                class="form-select ms-2"
+                id="question-type"
+                [(ngModel)]="question.type"
+                name="type"
+                required
+                style="display: inline-block"
+              >
+                <option value="multipleChoice">Multiple Choice</option>
+                <option value="checkbox">Checkbox</option>
+                <option value="shortAnswer">Short Answer</option>
+              </select>
+            </div>
+
+            <div *ngIf="question.type === 'multipleChoice'" class="m-2">
+              <div
+                *ngFor="let option of question.options; let j = index"
+                class="m-2"
+              >
+                <p-radioButton
+                  [name]="'question_' + i"
+                  [value]="option.text"
+                  [(ngModel)]="question.selectedOption"
+                  class="mb-2"
+                  (ngModelChange)="onRadioButtonChange(i)"
+                ></p-radioButton>
+                <input
+                  pTooltip="Radiobutton label"
+                  type="text"
+                  pInputText
+                  [(ngModel)]="option.text"
+                  class="ms-3"
+                />
+                <p-button
+                  icon="pi pi-times"
+                  (click)="removeOption(i, j)"
+                  class="m-2"
+                  styleClass="p-button-danger"
+                  pTooltip="Remove this option"
+                ></p-button>
+              </div>
+
+              <div class="div1">
+                <p-button
+                  type="button"
+                  icon="pi pi-plus"
+                  (click)="addOption(i)"
+                  class="m-2"
+                  styleClass="p-button-secondary"
+                  pTooltip="Add new option"
+                ></p-button>
+              </div>
+            </div>
+
+            <div *ngIf="question.type === 'checkbox'" class="m-2">
+              <div
+                *ngFor="let option of question.options; let j = index"
+                class="m-2"
+              >
+                <p-checkbox
+                  name="option"
+                  [value]="option.text"
+                  [(ngModel)]="option.selected"
+                  [inputId]="option.text + 1"
+                  class="mb-2"
+                  ></p-checkbox>
+                  <!-- (ngModelChange)="onCheckboxChange(option)" -->
+                <input
+                  pTooltip="Checkbox label"
+                  type="text"
+                  pInputText
+                  [(ngModel)]="option.text"
+                  class="ms-3"
+                />
+                <p-button
+                  icon="pi pi-times"
+                  (click)="removeOption(i, j)"
+                  class="m-2"
+                  styleClass="p-button-danger"
+                  pTooltip="Remove this option"
+                ></p-button>
+              </div>
+
+              <div class="div1">
+                <p-button
+                  type="button"
+                  icon="pi pi-plus"
+                  class="m-2"
+                  (click)="addOption(i)"
+                  styleClass="p-button-secondary"
+                  pTooltip="Add new option"
+                ></p-button>
+              </div>
+            </div>
+
+            <div *ngIf="question.type === 'shortAnswer'" class="m-2 text1">
+              <textarea
+                pTooltip="Short answer text"
+                pInputTextarea
+                [autoResize]="true"
+                [(ngModel)]="question.shortAnswerResponse"
+                (ngModelChange)="onShortAnswerChange(i)"
+              ></textarea>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-preview ></app-preview> -->
+<!-- <router-outlet ></router-outlet> -->
+
+
+
+
+
+
+
+
+
+<!-- <div *ngIf="question.type === 'multipleChoice'" class="m-2">
+  <div *ngFor="let option of question.options; let j = index" class="m-2">
+    <p-radioButton [value]="option.text" [disabled]="true"></p-radioButton>
+    {{ option.text }}
+  </div>
+</div>
+
+<!-- Display options for multiple choice questions -->
+<!-- <div *ngIf="question.type === 'checkbox'" class="m-2">
+  <div *ngFor="let option of question.options; let j = index" class="m-2">
+    <p-checkbox [value]="option.text" [disabled]="true"></p-checkbox>
+    {{ option.text }}
+  </div>
+</div> --> -->
+
+
